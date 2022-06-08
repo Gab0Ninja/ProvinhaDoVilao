@@ -9,7 +9,9 @@ server.post('/vilao' , async (req, resp) => {
         const sla= await Adicionar(vilao)
         resp.send(sla)
     } catch (err) {
-        
+        resp.send({
+            erro: err.message
+        })
     }
 })
 

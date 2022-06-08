@@ -3,13 +3,17 @@ import { conexao } from "./connection.js";
 export async function Adicionar (vilao){
     const comando =
      `
-     INSERT INTO tb_vilao (nm_anime)
+     INSERT INTO tb_vilao (
+        nm_vilao            ,
+        ds_maldades         ,
+        bt_super_poder      
+        )
      VALUES (?,?,?)
     `
 
-    const [resposta] = await conexao.query(comando, [vilao.nome]);
+    const [resposta] = await conexao.query(comando, [vilao.nome, vilao.maldade,vilao.poder]);
     
-    vilao.nome = resposta.insertId;
+    vilao.id = resposta.insertId;
 
     return vilao;
 }
